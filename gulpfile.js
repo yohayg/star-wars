@@ -39,6 +39,14 @@ var appJS = [
   'client/assets/js/app.js'
 ];
 
+var serviceJS = [
+  'client/assets/js/SwApiService.js'
+];
+
+var directiveJS = [
+  'client/assets/js/SwApiPropertyDirective.js'
+];
+
 // 3. TASKS
 // - - - - - - - - - - - - - - -
 
@@ -101,7 +109,7 @@ gulp.task('uglify', function() {
   ;
 
   // App JavaScript
-  return gulp.src(appJS)
+  gulp.src(appJS)
     .pipe($.uglify({
       beautify: true,
       mangle: false
@@ -111,6 +119,28 @@ gulp.task('uglify', function() {
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('./build/assets/js/'))
   ;
+
+  gulp.src(directiveJS)
+      .pipe($.uglify({
+        beautify: true,
+        mangle: false
+      }).on('error', function(e) {
+        console.log(e);
+      }))
+      .pipe($.concat('SwApiPropertyDirective.js'))
+      .pipe(gulp.dest('./build/assets/js/'))
+  ;
+
+  return gulp.src(serviceJS)
+      .pipe($.uglify({
+        beautify: true,
+        mangle: false
+      }).on('error', function(e) {
+        console.log(e);
+      }))
+      .pipe($.concat('SwApiService.js'))
+      .pipe(gulp.dest('./build/assets/js/'))
+      ;
 });
 
 // Copies your app's page templates and generates URLs for them
