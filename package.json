@@ -1,5 +1,5 @@
 {
-  "name": "ffa_sw",
+  "name": "gartner",
   "version": "1.0.4",
   "scripts": {
     "start": "gulp"

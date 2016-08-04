@@ -18,7 +18,7 @@ You'll need the following software installed to get started.
 Clone this repository, where `app` is the name of your app.
 
 ```bash
-git clone https://github.com/spsaucier/ffa_sw.git app
+git clone https://github.com/yohayg/gartner.git app
 ```
 
 Change into the directory.
@@ -47,4 +47,4 @@ To run the compiling process once, without watching any files:
 
 ```bash
 npm start build
-```# ffa_sw
+```# gartner
