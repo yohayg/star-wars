@@ -19,16 +19,22 @@
                         url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/GET/hello'
                     })
                 },
-                set: function (url) {
+                setFav: function (key,value) {
                     return $http({
                         method: 'SET',
-                        url: url
+                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/SET/'+key+"-"+value+"/true"
                     });
                 },
-                get: function (url) {
+                deleteFav: function (key,value) {
+                    return $http({
+                        method: 'SET',
+                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/DELETE/'+key+"-"+value
+                    });
+                },
+                getFav: function (key,value) {
                     return $http({
                         method: 'GET',
-                        url: url
+                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/GET/'+key+"-"+value
                     });
                 }
             };

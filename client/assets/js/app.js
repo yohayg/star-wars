@@ -61,14 +61,28 @@
     }
 
 
+
+
     function genericController($scope, $state, multiple, single, SWAPIService) {
 
-        SWAPIService.test().success(function (data) {
-            console.log(data);
-        });
+
         // Grab URL parameters
         $scope.id = ($state.params.id || '');
         $scope.page = ($state.params.p || 1);
+
+        console.log("$scope.id: "+$scope.id+" multiple:"+multiple+" single:"+single);
+
+        $scope.setFavorite = function (key){
+            console.log("key: "+key+" value:"+$scope.id);
+
+            SWAPIService.setFav(key,$scope.id).success(function (data) {
+
+                console.log(data);
+            });
+            SWAPIService.getFav(key).success(function (data) {
+                console.log(data);
+            });
+        };
 
         // Use Aerobatic's caching if we're on that server
         var urlApi = "http://swapi.co/api/" + multiple + "/" + $scope.id + "?page=" + $scope.page,
