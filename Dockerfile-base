@@ -1,0 +1,15 @@
+FROM ubuntu
+MAINTAINER Yohay <yohayg@gmail.com>
+
+# install our dependencies and nodejs
+RUN apt-get update
+RUN apt-get -y install git
+RUN apt-get -y install nodejs
+RUN apt-get -y install npm
+RUN apt-get update
+RUN apt-get -y install build-essential libssl-dev
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN npm cache clean
+RUN npm install -g bower
+RUN apt-get -y install ruby-full
+RUN gem install bundler sass
