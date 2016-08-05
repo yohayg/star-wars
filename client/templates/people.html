@@ -6,7 +6,7 @@ controller: PeopleCtrl
 <div class="grid-content person" class="person" ng-show="person">
 	<h1>{{person.name | capitalize}}</h1>
 	<img ng-show="imageUrl != 'Unknown'" src="{{imageUrl}}" alt="">
-	<button ng-click="setFavorite('person')">clickMe()</button>
+	<button-favorite></button-favorite>
 	<hr>
 	<dl>
 		<dt>Birth Year</dt>

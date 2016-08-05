@@ -47,6 +47,10 @@ var directiveJS = [
   'client/assets/js/SwApiPropertyDirective.js'
 ];
 
+var favoriteJS = [
+    'client/assets/js/SwApiFavoriteDirective.js'
+];
+
 // 3. TASKS
 // - - - - - - - - - - - - - - -
 
@@ -110,37 +114,34 @@ gulp.task('uglify', function() {
 
   // App JavaScript
   gulp.src(appJS)
-    .pipe($.uglify({
-      beautify: true,
-      mangle: false
-    }).on('error', function(e) {
-      console.log(e);
-    }))
     .pipe($.concat('app.js'))
     .pipe(gulp.dest('./build/assets/js/'))
   ;
 
   gulp.src(directiveJS)
-      .pipe($.uglify({
-        beautify: true,
-        mangle: false
-      }).on('error', function(e) {
-        console.log(e);
-      }))
       .pipe($.concat('SwApiPropertyDirective.js'))
       .pipe(gulp.dest('./build/assets/js/'))
   ;
 
-  return gulp.src(serviceJS)
-      .pipe($.uglify({
-        beautify: true,
-        mangle: false
-      }).on('error', function(e) {
-        console.log(e);
-      }))
-      .pipe($.concat('SwApiService.js'))
-      .pipe(gulp.dest('./build/assets/js/'))
-      ;
+    gulp.src(favoriteJS)
+        .pipe($.concat('SwApiFavoriteDirective.js'))
+        .pipe(gulp.dest('./build/assets/js/'))
+    ;
+
+  //return gulp.src(serviceJS)
+  //    .pipe($.uglify({
+  //      beautify: true,
+  //      mangle: false
+  //    }).on('error', function(e) {
+  //      console.log(e);
+  //    }))
+  //    .pipe($.concat('SwApiService.js'))
+  //    .pipe(gulp.dest('./build/assets/js/'))
+  //    ;
+    return gulp.src(serviceJS)
+        .pipe($.concat('SwApiService.js'))
+        .pipe(gulp.dest('./build/assets/js/'))
+        ;
 });
 
 // Copies your app's page templates and generates URLs for them

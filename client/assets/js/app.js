@@ -65,26 +65,85 @@
 
     function genericController($scope, $state, multiple, single, SWAPIService) {
 
-
         // Grab URL parameters
         $scope.id = ($state.params.id || '');
         $scope.page = ($state.params.p || 1);
+        $scope.single = single;
 
         console.log("$scope.id: "+$scope.id+" multiple:"+multiple+" single:"+single);
 
-        $scope.setFavorite = function (key){
-            console.log("key: "+key+" value:"+$scope.id);
+        //$scope.setFavorite = function (key){
+        //    console.log("key: "+key+" value:"+$scope.id);
+        //
+        //
+        //
+        //    SWAPIService.setFav(key,$scope.id).success(function (data) {
+        //
+        //        console.log(data);
+        //    });
+        //    SWAPIService.getFav(key,$scope.id).success(function (data) {
+        //        console.log(data);
+        //    });
+        //};
 
-            SWAPIService.setFav(key,$scope.id).success(function (data) {
-
+        $scope.like=false;
+        $scope.likeText = "Like";
+        $scope.isLiked = function(){
+            console.log("$scope.id: "+$scope.id+" multiple:"+multiple+" $scope.single:"+$scope.single);
+            SWAPIService.getFav($scope.single,$scope.id).success(function (data) {
                 console.log(data);
-            });
-            SWAPIService.getFav(key).success(function (data) {
-                console.log(data);
+                if(data.GET){
+                    $scope.like=true;
+                    $scope.likeText = "Dislike";
+                }else{
+                $scope.like=false;
+                $scope.likeText = "Like";
+                }
+            }).error(function(err){
+                console.error(err);
             });
         };
 
-        // Use Aerobatic's caching if we're on that server
+
+        $scope.setLike = function(){
+            console.log("$scope.id: "+$scope.id+" multiple:"+multiple+" $scope.single:"+$scope.single);
+            SWAPIService.setFav($scope.single,$scope.id).success(function (data) {
+                console.log(data);
+                if(data.SET[0]){
+                    $scope.like=true;
+                    $scope.likeText = "Dislike";
+                }else{
+                    $scope.like=false;
+                    $scope.likeText = "Like";
+                }
+            }).error(function(err){
+                console.error(err);
+            });
+        };
+
+
+        $scope.setDislike = function(){
+            console.log("$scope.id: "+$scope.id+" multiple:"+multiple+" $scope.single:"+$scope.single);
+            SWAPIService.deleteFav($scope.single,$scope.id).success(function (data) {
+                console.log(data);
+                if(data.DEL == 1){
+                    $scope.like=false;
+                    $scope.likeText = "Like";
+
+                }else{
+                    $scope.like=true;
+                    $scope.likeText = "Dislike";
+                }
+            }).error(function(err){
+                console.error(err);
+            });
+        };
+
+        if($scope.single){
+            $scope.isLiked();
+
+        }
+
         var urlApi = "http://swapi.co/api/" + multiple + "/" + $scope.id + "?page=" + $scope.page,
             queryParams = {
                 cache: true

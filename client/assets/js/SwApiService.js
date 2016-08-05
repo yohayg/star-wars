@@ -21,14 +21,14 @@
                 },
                 setFav: function (key,value) {
                     return $http({
-                        method: 'SET',
+                        method: 'GET',
                         url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/SET/'+key+"-"+value+"/true"
                     });
                 },
                 deleteFav: function (key,value) {
                     return $http({
-                        method: 'SET',
-                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/DELETE/'+key+"-"+value
+                        method: 'GET',
+                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/DEL/'+key+"-"+value
                     });
                 },
                 getFav: function (key,value) {

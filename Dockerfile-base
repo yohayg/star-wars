@@ -13,3 +13,4 @@ RUN npm cache clean
 RUN npm install -g bower
 RUN apt-get -y install ruby-full
 RUN gem install bundler sass
+RUN mkdir /home/ubuntu/app
