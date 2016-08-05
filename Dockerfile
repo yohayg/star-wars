@@ -13,8 +13,8 @@ RUN npm cache clean
 RUN npm install -g bower
 RUN apt-get -y install ruby-full
 RUN gem install bundler sass
-RUN mkdir /home/ubuntu/app
-
+RUN mkdir -p /home/ubuntu/app
+RUN cd /home/ubuntu/app ; git clone https://github.com/yohayg/gartner.git
 RUN cd /home/ubuntu/app/gartner ; npm install
 RUN cd /home/ubuntu/app/gartner ; bower --allow-root install
 RUN cd /home/ubuntu/app/gartner ; npm install -g gulp
