@@ -16,25 +16,25 @@
                 test: function(){
                     return $http({
                         method: 'GET',
-                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/GET/hello'
+                        url: 'http://localhost:7379/GET/hello'
                     })
                 },
                 setFav: function (key,value) {
                     return $http({
                         method: 'GET',
-                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/SET/'+key+"-"+value+"/true"
+                        url: 'http://localhost:7379/SET/'+key+"-"+value+"/true"
                     });
                 },
                 deleteFav: function (key,value) {
                     return $http({
                         method: 'GET',
-                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/DEL/'+key+"-"+value
+                        url: 'http://localhost:7379/DEL/'+key+"-"+value
                     });
                 },
                 getFav: function (key,value) {
                     return $http({
                         method: 'GET',
-                        url: 'http://ec2-54-93-90-68.eu-central-1.compute.amazonaws.com:7379/GET/'+key+"-"+value
+                        url: 'http://localhost:7379/GET/'+key+"-"+value
                     });
                 }
             };
